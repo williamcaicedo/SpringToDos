@@ -27,7 +27,7 @@ public class ToDo implements Serializable {
     
     private Date dueDate;
     
-    private Category Category;
+    private Category category;
     
     
     private List<Comment> comments;
@@ -61,11 +61,11 @@ public class ToDo implements Serializable {
     }
 
     public Category getCategory() {
-        return Category;
+        return category;
     }
 
     public void setCategory(Category Category) {
-        this.Category = Category;
+        this.category = Category;
     }
 
     public List<Comment> getComments() {
