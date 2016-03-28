@@ -6,24 +6,31 @@
 package co.edu.utb.softeng.springtodos.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
  * @author william
  */
 
+@Entity
 public class Category implements Serializable {
 
   
+    @Id
+    @GeneratedValue
     private Long id;
     
     private String name;
     
     private String description;
+    
+    @ManyToMany(mappedBy="categories")
+    private List<ToDo> toDos;
     
 
     public Long getId() {
@@ -48,6 +55,14 @@ public class Category implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<ToDo> getToDos() {
+        return toDos;
+    }
+
+    public void setToDos(List<ToDo> toDos) {
+        this.toDos = toDos;
     }
 
     

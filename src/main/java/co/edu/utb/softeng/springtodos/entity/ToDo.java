@@ -8,30 +8,46 @@ package co.edu.utb.softeng.springtodos.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author william
  */
 
+@Entity
 public class ToDo implements Serializable {
 
     
+    @Id
+    @GeneratedValue()
     private Long id;
     
     private String title;
     
     
+    @Lob
     private String description;
     
     
+    @Temporal(value=TemporalType.DATE)
     private Date dueDate;
     
-    private Category category;
+    @ManyToMany
+    private List<Category> categories;
     
-    
+    @OneToMany(mappedBy="toDo")
     private List<Comment> comments;
     
+    @ElementCollection
     private List<String> tags;
     
     private boolean isFinished;
@@ -60,12 +76,12 @@ public class ToDo implements Serializable {
         this.dueDate = dueDate;
     }
 
-    public Category getCategory() {
-        return category;
+    public List<Category> getCategory() {
+        return categories;
     }
 
-    public void setCategory(Category Category) {
-        this.category = Category;
+    public void setCategory(List<Category> categories) {
+        this.categories = categories;
     }
 
     public List<Comment> getComments() {

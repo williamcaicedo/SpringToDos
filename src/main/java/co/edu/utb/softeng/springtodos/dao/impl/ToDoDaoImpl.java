@@ -9,6 +9,7 @@ import co.edu.utb.softeng.springtodos.entity.ToDo;
 import co.edu.utb.softeng.springtodos.dao.ToDoDao;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -34,19 +35,8 @@ public class ToDoDaoImpl implements ToDoDao{
     
     @Override
     public List<ToDo> getAll() {
-        ToDo todo1 = new ToDo();
-        todo1.setTitle("Test ToDo");
-        todo1.setDescription("This is a test ToDo. More to come.");
-        
-        ToDo todo2 = new ToDo();
-        todo2.setTitle("Test ToDo");
-        todo2.setDescription("This is a test ToDo. More to come.");
-        
-        List<ToDo> todos = new ArrayList<>();
-        todos.add(todo1);
-        todos.add(todo2);
-        return todos;
-        
+        Session session = sessionFactory.getCurrentSession();
+        return session.createCriteria(ToDo.class).list();   
     }
     
     

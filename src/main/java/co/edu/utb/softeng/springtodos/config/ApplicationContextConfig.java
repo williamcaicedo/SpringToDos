@@ -57,7 +57,7 @@ public class ApplicationContextConfig extends WebMvcConfigurerAdapter{
     public DataSource getDataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/todosdb");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/ToDos");
         dataSource.setUsername("root");
         dataSource.setPassword("");
         return dataSource;
@@ -77,7 +77,7 @@ public class ApplicationContextConfig extends WebMvcConfigurerAdapter{
     public SessionFactory getSessionFactory(DataSource dataSource) {
         LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
         sessionBuilder.addProperties(getHibernateProperties());
-        sessionBuilder.scanPackages("co.utb.softeng.moviesapp.entities");
+        sessionBuilder.scanPackages("co.edu.utb.softeng.springtodos.entity");
         return sessionBuilder.buildSessionFactory();
     }
 

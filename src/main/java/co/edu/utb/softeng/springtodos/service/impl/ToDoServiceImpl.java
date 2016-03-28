@@ -11,12 +11,14 @@ import co.edu.utb.softeng.springtodos.service.ToDoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author william
  */
 @Service
+@Transactional
 public class ToDoServiceImpl implements ToDoService{
     
     @Autowired
