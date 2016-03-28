@@ -76,11 +76,11 @@ public class ToDo implements Serializable {
         this.dueDate = dueDate;
     }
 
-    public List<Category> getCategory() {
+    public List<Category> getCategories() {
         return categories;
     }
 
-    public void setCategory(List<Category> categories) {
+    public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
 

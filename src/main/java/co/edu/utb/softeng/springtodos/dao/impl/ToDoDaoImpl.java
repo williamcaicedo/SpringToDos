@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -27,10 +28,8 @@ public class ToDoDaoImpl implements ToDoDao{
     @Override
     public ToDo getById(Long id) {
         
-        ToDo todo = new ToDo();
-        todo.setTitle("Test ToDo");
-        todo.setDescription("This is a test ToDo. More to come.");
-        return todo;
+        Session session = sessionFactory.getCurrentSession();
+        return (ToDo)session.createCriteria(ToDo.class).add(Restrictions.idEq(id)).uniqueResult();
     }
     
     @Override
