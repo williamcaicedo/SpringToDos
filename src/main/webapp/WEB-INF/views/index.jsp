@@ -35,7 +35,7 @@
     </div>
     <div class="modal-body">
     <form name="todoForm" novalidate>
-
+    <br/>
     <div class="row">
     <div class="col-md-5">
     <div class="form-group">
@@ -44,6 +44,7 @@
     </div>
     </div>
     </div>
+    <br/>
     <div class="row">
     <div class="col-md-5">
     <div class="form-group">
@@ -52,6 +53,7 @@
     </div>
     </div>
     </div>
+    <br/>
     <div class="row">
     <div class="col-md-5">
     <div class="form-group">
