@@ -10,6 +10,8 @@ import co.edu.utb.softeng.springtodos.service.ToDoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,8 +38,26 @@ public class ToDoController {
     }
     
     @RequestMapping(value={"/{id}"}, method = RequestMethod.GET)
-    public @ResponseBody ToDo getById(Long id) {
+    public @ResponseBody ToDo getById(@PathVariable Long id) {
         return service.getToDoById(id);
+    }
+    
+    @RequestMapping(value={"/", ""}, method = RequestMethod.POST)
+    public @ResponseBody ToDo createToDo(@RequestBody ToDo todo) {
+        todo = service.saveOrUpdate(todo);
+        return todo;
+    }
+    
+    @RequestMapping(value={"/", ""}, method = RequestMethod.PUT)
+    public @ResponseBody ToDo updateToDo(@RequestBody ToDo todo) {
+        todo = service.saveOrUpdate(todo);
+        return todo;
+    }
+    
+    @RequestMapping(value={"/{id}"}, method = RequestMethod.DELETE)
+    public @ResponseBody Long deleteToDo(@PathVariable Long id) {
+        service.delete(id);
+        return id;
     }
     
 }

@@ -33,5 +33,15 @@ public class ToDoServiceImpl implements ToDoService{
     public List<ToDo> getAllToDos() {
         return dao.getAll();
     }
+
+    @Override
+    public ToDo saveOrUpdate(ToDo todo) {
+        return dao.saveOrUpdate(todo);
+    }
+
+    @Override
+    public void delete(Long id) {
+        dao.delete(id);
+    }
     
 }

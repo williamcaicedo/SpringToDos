@@ -16,5 +16,7 @@ public interface ToDoDao {
     
     public ToDo getById(Long id);
     public List<ToDo> getAll();
+    public ToDo saveOrUpdate(ToDo todo);
+    public void delete(Long id);
     
 }

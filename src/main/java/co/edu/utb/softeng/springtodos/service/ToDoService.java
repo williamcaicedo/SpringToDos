@@ -16,5 +16,7 @@ public interface ToDoService {
     
     public ToDo getToDoById(Long id);
     public List<ToDo> getAllToDos();
+    public ToDo saveOrUpdate(ToDo todo);
+    public void delete(Long id);
     
 }

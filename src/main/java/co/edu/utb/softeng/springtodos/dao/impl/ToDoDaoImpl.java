@@ -7,7 +7,6 @@ package co.edu.utb.softeng.springtodos.dao.impl;
 
 import co.edu.utb.softeng.springtodos.entity.ToDo;
 import co.edu.utb.softeng.springtodos.dao.ToDoDao;
-import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,6 +35,22 @@ public class ToDoDaoImpl implements ToDoDao{
     public List<ToDo> getAll() {
         Session session = sessionFactory.getCurrentSession();
         return session.createCriteria(ToDo.class).list();   
+    }
+
+    @Override
+    public ToDo saveOrUpdate(ToDo todo) {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(todo);
+        return todo;
+    }
+
+    @Override
+    public void delete(Long id) {
+        Session session = sessionFactory.getCurrentSession();
+        ToDo todo = new ToDo();
+        todo.setId(id);
+        session.delete(todo);
+        
     }
     
     
