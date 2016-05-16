@@ -7,6 +7,7 @@ package co.edu.utb.softeng.springtodos.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,6 +22,7 @@ public class PagesController {
     
     private final String apiUrl = "http://localhost:8080/SpringToDos/";
     
+    //@Secured("ROLE_ADMIN")
     @RequestMapping(value = "/")
     public ModelAndView getHomePage() {
         Map<String, Object> params = new HashMap<>();

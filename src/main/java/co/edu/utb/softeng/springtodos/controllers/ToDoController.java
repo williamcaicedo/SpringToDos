@@ -9,6 +9,7 @@ import co.edu.utb.softeng.springtodos.entity.ToDo;
 import co.edu.utb.softeng.springtodos.service.ToDoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,11 +28,6 @@ public class ToDoController {
     @Autowired
     ToDoService service;
     
-    @RequestMapping(value={"/test"}, method = RequestMethod.GET)
-    public @ResponseBody String test() {
-        return "hello spring!";
-    }
-    
     @RequestMapping(value={"/", ""}, method = RequestMethod.GET)
     public @ResponseBody List<ToDo> getAll() {
         return service.getAllToDos();
@@ -42,12 +38,14 @@ public class ToDoController {
         return service.getToDoById(id);
     }
     
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value={"/", ""}, method = RequestMethod.POST)
     public @ResponseBody ToDo createToDo(@RequestBody ToDo todo) {
         todo = service.saveOrUpdate(todo);
         return todo;
     }
     
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value={"/", ""}, method = RequestMethod.PUT)
     public @ResponseBody ToDo updateToDo(@RequestBody ToDo todo) {
         todo = service.saveOrUpdate(todo);

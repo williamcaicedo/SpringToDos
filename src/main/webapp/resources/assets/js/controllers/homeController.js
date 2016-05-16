@@ -29,6 +29,16 @@ controllerModule.controller('homeController', ['$scope', '$uibModal', 'todoServi
         };
         
         $scope.getAllTodos();
+        
+        $scope.login = function () {
+            $uibModal.open({
+                templateUrl: 'loginModal',
+                controller: 'homeController.loginModal',
+                size: 'md'
+            }).result.then(function (l) {
+                
+            });
+        };
 
 
     }]);
@@ -42,6 +52,19 @@ controllerModule.controller('homeController.addToDoModal', ['$scope', '$modalIns
         $scope.ok = function () {
 
             $modalInstance.close($scope.todo);
+        };
+    }]);
+
+controllerModule.controller('homeController.loginModal', ['$scope', '$modalInstance', function ($scope, $modalInstance) {
+        $scope.todo = {};
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+
+        $scope.ok = function () {
+
+            $modalInstance.close($scope.userLogin);
         };
     }]);
 

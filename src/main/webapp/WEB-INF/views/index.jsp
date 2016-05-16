@@ -28,7 +28,7 @@
     <body ng-controller="homeController">
 
 
-        <script type="text/ng-template" id="addToDoModal">
+    <script type="text/ng-template" id="addToDoModal">
     <div class="modal-header">
     <button type="button" class="close" ng-click="cancel();" aria-hidden="true">&times;</button>
     <h4 class="modal-title">Add a To Do</h4>
@@ -70,7 +70,42 @@
     <button type="button" class="btn btn-primary" ng-disabled="todoForm.$invalid" ng-click="ok()">Add</button>
     <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
     </div>
-        </script>
+    </script>
+    
+    
+    <script type="text/ng-template" id="loginModal">
+    <div class="modal-header">
+    <button type="button" class="close" ng-click="cancel();" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">Login</h4>
+    </div>
+    <div class="modal-body">
+    <form name="loginForm" novalidate>
+    <br/>
+    <div class="row">
+    <div class="col-md-5">
+    <div class="form-group">
+    <label for="name" class="control-label">Username: </label>
+    <input id="name" class="form-control" type="text" ng-model="user.username" required/>
+    </div>
+    </div>
+    </div>
+    <br/>
+    <div class="row">
+    <div class="col-md-5">
+    <div class="form-group">
+    <label for="director" class="control-label">Password: </label>
+    <input id="director" class="form-control" type="password" ng-model="user.password" required/>
+    </div>
+    </div>
+    </div>
+   
+
+    </form>
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-disabled="loginForm.$invalid" ng-click="ok()">Add</button>
+    </div>
+    </script>
 
         <!-- Navigation -->
         <nav class="navbar z-depth-2 info-color">
@@ -84,10 +119,12 @@
                     </button>
                     <a class="navbar-brand waves-effect waves-light" href="#/">To Dos App</a>
                     <a class="navbar-brand waves-effect waves-light" href="#/" ng-click="addToDo()">Add a To Do</a>
+                    
+                    
 
                 </div>
-
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <a class="navbar-brand waves-effect waves-light" href="#/" ng-click="login()">Login</a>
+                <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
 
                     <!--form class="navbar-form navbar-right waves-effect waves-light" role="search">
                         <div class="form-group">

@@ -1,5 +1,6 @@
 package co.edu.utb.softeng.springtodos.config;
 
+import co.edu.utb.softeng.springtodos.config.security.SecurityConfiguration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
@@ -10,6 +11,8 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 public class SpringWebAppInitializer implements WebApplicationInitializer {
 
+    //SpringSecurity configuration
+    private static Class<?>[] configurationClasses =  new Class<?>[]{SecurityConfiguration.class};
     
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
