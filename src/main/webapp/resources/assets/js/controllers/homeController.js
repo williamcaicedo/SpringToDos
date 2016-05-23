@@ -6,7 +6,7 @@
 
 var controllerModule = angular.module('springToDosAppControllers');
 
-controllerModule.controller('homeController', ['$scope', '$uibModal', 'todoService', '_', function ($scope, $uibModal, todoService, _) {
+controllerModule.controller('homeController', ['$scope', 'todoService', '_', function ($scope, todoService, _) {
         $scope.todos = [];
 
         $scope.getAllTodos = function () {
@@ -15,56 +15,8 @@ controllerModule.controller('homeController', ['$scope', '$uibModal', 'todoServi
             });
         };
         
-        $scope.addToDo = function () {
-            $uibModal.open({
-                templateUrl: 'addToDoModal',
-                controller: 'homeController.addToDoModal',
-                size: 'md'
-            }).result.then(function (t) {
-                todoService.save(t)
-                        .then(function (response) {
-                            $scope.getAllTodos();
-                        });
-            });
-        };
-        
         $scope.getAllTodos();
         
-        $scope.login = function () {
-            $uibModal.open({
-                templateUrl: 'loginModal',
-                controller: 'homeController.loginModal',
-                size: 'md'
-            }).result.then(function (l) {
-                
-            });
-        };
 
 
     }]);
-controllerModule.controller('homeController.addToDoModal', ['$scope', '$modalInstance', function ($scope, $modalInstance) {
-        $scope.todo = {};
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-
-        $scope.ok = function () {
-
-            $modalInstance.close($scope.todo);
-        };
-    }]);
-
-controllerModule.controller('homeController.loginModal', ['$scope', '$modalInstance', function ($scope, $modalInstance) {
-        $scope.todo = {};
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-
-        $scope.ok = function () {
-
-            $modalInstance.close($scope.userLogin);
-        };
-    }]);
-

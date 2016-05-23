@@ -57,9 +57,9 @@ public class ApplicationContextConfig extends WebMvcConfigurerAdapter{
     public DataSource getDataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/ToDos");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/todos");
         dataSource.setUsername("root");
-        dataSource.setPassword("");
+        dataSource.setPassword("root");
         return dataSource;
     }
 

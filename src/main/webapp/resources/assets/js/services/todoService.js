@@ -6,7 +6,7 @@
 
 var services = angular.module('springToDosAppServices');
 services.factory('todoService', ['$http', '_', function ($http, _) {
-        var apiUrl = 'http://localhost:8080/SpringToDos/';
+        
         return {
             getAll: function() {
                 return $http.get(apiUrl + 'todo/');

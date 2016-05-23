@@ -25,90 +25,48 @@
 
     </head>
 
-    <body ng-controller="homeController">
+    <body>
 
 
-    <script type="text/ng-template" id="addToDoModal">
-    <div class="modal-header">
-    <button type="button" class="close" ng-click="cancel();" aria-hidden="true">&times;</button>
-    <h4 class="modal-title">Add a To Do</h4>
-    </div>
-    <div class="modal-body">
-    <form name="todoForm" novalidate>
-    <br/>
-    <div class="row">
-    <div class="col-md-5">
-    <div class="form-group">
-    <label for="name" class="control-label">Name: </label>
-    <input id="name" class="form-control" type="text" ng-model="todo.title" required/>
-    </div>
-    </div>
-    </div>
-    <br/>
-    <div class="row">
-    <div class="col-md-5">
-    <div class="form-group">
-    <label for="director" class="control-label">Description </label>
-    <input id="director" class="form-control" type="text" ng-model="todo.description" required/>
-    </div>
-    </div>
-    </div>
-    <br/>
-    <div class="row">
-    <div class="col-md-5">
-    <div class="form-group">
-    <label for="releaseDate" class="control-label">Due Date: </label>
-    <input id="releaseDate" class="form-control" type="date" ng-model="todo.dueDate" required/>
-    </div>
-    </div>
-    </div>
+        
 
 
-    </form>
-    </div>
-    <div class="modal-footer">
-    <button type="button" class="btn btn-primary" ng-disabled="todoForm.$invalid" ng-click="ok()">Add</button>
-    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-    </div>
-    </script>
-    
-    
-    <script type="text/ng-template" id="loginModal">
-    <div class="modal-header">
-    <button type="button" class="close" ng-click="cancel();" aria-hidden="true">&times;</button>
-    <h4 class="modal-title">Login</h4>
-    </div>
-    <div class="modal-body">
-    <form name="loginForm" novalidate>
-    <br/>
-    <div class="row">
-    <div class="col-md-5">
-    <div class="form-group">
-    <label for="name" class="control-label">Username: </label>
-    <input id="name" class="form-control" type="text" ng-model="user.username" required/>
-    </div>
-    </div>
-    </div>
-    <br/>
-    <div class="row">
-    <div class="col-md-5">
-    <div class="form-group">
-    <label for="director" class="control-label">Password: </label>
-    <input id="director" class="form-control" type="password" ng-model="user.password" required/>
-    </div>
-    </div>
-    </div>
-   
+        <script type="text/ng-template" id="loginModal">
+            <div class="modal-header">
+            <button type="button" class="close" ng-click="cancel();" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Login</h4>
+            </div>
+            <div class="modal-body">
+            <form name="loginForm" novalidate>
+            <br/>
+            <div class="row">
+            <div class="col-md-5">
+            <div class="form-group">
+            <label for="name" class="control-label">Username: </label>
+            <input id="name" class="form-control" type="text" ng-model="user.username" required/>
+            </div>
+            </div>
+            </div>
+            <br/>
+            <div class="row">
+            <div class="col-md-5">
+            <div class="form-group">
+            <label for="director" class="control-label">Password: </label>
+            <input id="director" class="form-control" type="password" ng-model="user.password" required/>
+            </div>
+            </div>
+            </div>
 
-    </form>
-    </div>
-    <div class="modal-footer">
-    <button type="button" class="btn btn-primary" ng-disabled="loginForm.$invalid" ng-click="ok()">Add</button>
-    </div>
-    </script>
+
+            </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary" ng-disabled="loginForm.$invalid" ng-click="ok()">Add</button>
+            </div>
+        </script>
 
         <!-- Navigation -->
-        <nav class="navbar z-depth-2 info-color">
+        <nav ng-controller="navbarController" class="navbar z-depth-2 info-color">
             <div class="container ">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -119,11 +77,12 @@
                     </button>
                     <a class="navbar-brand waves-effect waves-light" href="#/">To Dos App</a>
                     <a class="navbar-brand waves-effect waves-light" href="#/" ng-click="addToDo()">Add a To Do</a>
-                    
-                    
+
+
 
                 </div>
-                <a class="navbar-brand waves-effect waves-light" href="#/" ng-click="login()">Login</a>
+                <a ng-show="!isLoggedIn" class="navbar-brand waves-effect waves-light" href="#/login">Login</a>
+                <a ng-show="isLoggedIn" class="navbar-brand waves-effect waves-light" ng-click="logout()">Logout</a>
                 <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
 
                     <!--form class="navbar-form navbar-right waves-effect waves-light" role="search">
@@ -136,37 +95,13 @@
         </nav>
 
         <!-- Page Content -->
-        <div class="container">
+        <div ng-view class="container">
 
 
 
 
 
-            <!-- /.row -->
-            <div>
-                <div ng-repeat="todo in todos">
-                    <!-- Project One -->
-                    <div  class="row">
-                        <div class="col-md-7">
-                            <a href="">
-                                <img class="img-responsive z-depth-1 hoverable hidden-sm hidden-xs" src="http://lorempixel.com/400/200/" alt="">
-                            </a>
 
-                        </div>
-                        <div class="col-md-5" style="padding-top: 1em" id="videomaker">
-                            <h3><i class="fa fa-star "></i> {{todo.title}}</h3>
-                            <p>{{todo.description| limitTo:200}}...</p>
-                            <a href="#/detail/{{todo.id}}">
-                                <button type="button" class="btn btn-info waves-effect waves-light">More...</button>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- /.row -->
-
-                    <hr>
-                </div>
-
-            </div>
 
 
 
@@ -196,6 +131,10 @@
 
         <!-- SCRIPTS -->
 
+        <script>
+            apiUrl = "${apiUrl}";
+        </script>
+
         <!-- JQuery -->
         <script type="text/javascript" src="assets/js/lib/jquery.min.js"></script>
 
@@ -206,7 +145,7 @@
         <script type="text/javascript" src="assets/js/lib/mdb.js"></script>
 
 
-        
+
         <script src="assets/js/lib/lodash.min.js"></script>
         <script src="assets/js/lib/angular.min.js"></script>
         <script src="assets/js/lib/angular-route.min.js"></script>
@@ -214,7 +153,10 @@
         <script src="assets/js/lib/ui-bootstrap-tpls-0.14.0.min.js"></script>
         <script src="assets/js/moduleRegistration.js"></script>
         <script src="assets/js/services/todoService.js"></script>
+        <script src="assets/js/services/authService.js"></script>
+        <script src="assets/js/controllers/navbarController.js"></script>
         <script src="assets/js/controllers/homeController.js"></script>
+        <script src="assets/js/controllers/loginController.js"></script>
 
         <script src="assets/js/app.js"></script>
 
