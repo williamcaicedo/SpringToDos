@@ -76,7 +76,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand waves-effect waves-light" href="#/">To Dos App</a>
-                    <a class="navbar-brand waves-effect waves-light" href="#/" ng-click="addToDo()">Add a To Do</a>
+                    <a class="navbar-brand waves-effect waves-light" href="#/" ng-show="isLoggedIn" ng-click="addToDo()">Add a To Do</a>
 
 
 

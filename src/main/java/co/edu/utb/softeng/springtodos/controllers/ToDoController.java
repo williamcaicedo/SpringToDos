@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/todo")
+@Secured("ROLE_ADMIN")
 public class ToDoController {
     
     @Autowired
@@ -38,14 +39,14 @@ public class ToDoController {
         return service.getToDoById(id);
     }
     
-    @Secured("ROLE_ADMIN")
+    
     @RequestMapping(value={"/", ""}, method = RequestMethod.POST)
     public @ResponseBody ToDo createToDo(@RequestBody ToDo todo) {
         todo = service.saveOrUpdate(todo);
         return todo;
     }
     
-    @Secured("ROLE_ADMIN")
+    
     @RequestMapping(value={"/", ""}, method = RequestMethod.PUT)
     public @ResponseBody ToDo updateToDo(@RequestBody ToDo todo) {
         todo = service.saveOrUpdate(todo);
