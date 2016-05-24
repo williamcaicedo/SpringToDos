@@ -156,6 +156,7 @@
         <script src="assets/js/services/authService.js"></script>
         <script src="assets/js/controllers/navbarController.js"></script>
         <script src="assets/js/controllers/homeController.js"></script>
+        <script src="assets/js/controllers/detailController.js"></script>
         <script src="assets/js/controllers/loginController.js"></script>
 
         <script src="assets/js/app.js"></script>
